@@ -1,3 +1,3 @@
-<a href="{{ $attributes->get('href') }}">
+<a {{ $attributes }}>
     {{ $slot }}
 </a>

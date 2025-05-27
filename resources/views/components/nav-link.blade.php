@@ -12,7 +12,7 @@
     >
     {{ $slot }}
     </a>
-@elseif($type == 'button')
+@else
     {{--  Button  --}}
     <button
         {{ $attributes->except(['href']) }}

@@ -20,7 +20,20 @@ Route::get('/contact', function () {
 });
 
 Route::get('/jobs', function () {
-    return view('jobs', ['jobs' => Job::all()]);
+
+    // Lazy loads the jobs:
+    // Any relationship leads to an extra query
+    // causing N + 1 query
+//     $jobs = Job::all();
+
+    // Eagerly loads the jobs:
+    // Loads the 'employer' relationship at once
+    // preventing N + 1 query
+    $jobs = Job::with('employer')->get();
+
+    return view('jobs', [
+        'jobs' => $jobs
+    ]);
 });
 
 Route::get('/jobs/{id}', function (int $id) {

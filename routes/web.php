@@ -29,7 +29,16 @@ Route::get('/jobs', function () {
     // Eagerly loads the jobs:
     // Loads the 'employer' relationship at once
     // preventing N + 1 query
-    $jobs = Job::with('employer')->get();
+//    $jobs = Job::with('employer')->get();
+
+    // Paginate
+    $jobs = Job::with('employer')->paginate();
+
+    // Simple pagination: remove the page number 1, 2, 3, ... in the pagination link
+//    $jobs = Job::with('employer')->simplePaginate(3);
+
+    // Cursor based pagination: does not use page numbers (1, 2, 3, ...) for pagination
+//    $jobs = Job::with('employer')->cursorPaginate(3);
 
     return view('jobs', [
         'jobs' => $jobs

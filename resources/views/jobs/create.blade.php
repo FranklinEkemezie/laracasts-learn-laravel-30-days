@@ -18,20 +18,36 @@
                     <div class="sm:col-span-4">
                         <label for="title" class="block text-sm/6 font-medium text-gray-900">Title</label>
                         <div class="mt-2">
-                            <input id="title" name="title" type="text" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Shift Leader">
+                            <input id="title" name="title" type="text" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Shift Leader" required>
                         </div>
+
+                        @error('title')
+                            <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
 {{--                    Salary --}}
                     <div class="sm:col-span-4">
                         <label for="salary" class="block text-sm/6 font-medium text-gray-900">Salary</label>
                         <div class="mt-2">
-                            <input id="salary" name="salary" type="text" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="$50,000 per year">
+                            <input id="salary" name="salary" type="text" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="$50,000 per year" required>
                         </div>
+
+                        @error('salary')
+                            <p class="text-xs text-red-500 font-semibold mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
                 </div>
 
-
+{{--                <div class="mt-10">--}}
+{{--                    @if($errors->any())--}}
+{{--                        <ul>--}}
+{{--                            @foreach($errors->all() as $error)--}}
+{{--                                <li class="italic text-red-500">{{ $error }}</li>--}}
+{{--                            @endforeach--}}
+{{--                        </ul>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
             </div>
 
         </div>

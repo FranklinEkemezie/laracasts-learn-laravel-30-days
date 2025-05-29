@@ -32,7 +32,7 @@ Route::get('/jobs', function () {
 //    $jobs = Job::with('employer')->get();
 
     // Paginate
-    $jobs = Job::with('employer')->paginate();
+    $jobs = Job::with('employer')->latest()->paginate();
 
     // Simple pagination: remove the page number 1, 2, 3, ... in the pagination link
 //    $jobs = Job::with('employer')->simplePaginate(3);
@@ -40,11 +40,29 @@ Route::get('/jobs', function () {
     // Cursor based pagination: does not use page numbers (1, 2, 3, ...) for pagination
 //    $jobs = Job::with('employer')->cursorPaginate(3);
 
-    return view('jobs', [
+    return view('jobs.index', [
         'jobs' => $jobs
     ]);
 });
 
+Route::get('/jobs/create', function () {
+   return view('jobs.create');
+});
+
 Route::get('/jobs/{id}', function (int $id) {
-    return view('job', ['job' => Job::find($id)]);
+    return view('jobs.show', ['job' => Job::find($id)]);
+});
+
+Route::post('/jobs', function () {
+
+    // TODO: Validate request
+
+    // Create job
+    Job::create([
+        'title'         => request('title'),
+        'salary'        => request('salary'),
+        'employer_id'   => 1
+    ]);
+
+    return redirect('/jobs');
 });

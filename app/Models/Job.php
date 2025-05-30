@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Arr;
 
+/**
+ * @property string $id
+ * @property string $title
+ * @property string $salary
+ */
 class Job extends Model {
 
     use HasFactory;

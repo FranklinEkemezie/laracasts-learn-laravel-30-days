@@ -49,15 +49,8 @@ class JobController extends Controller
 
     public function edit(Job $job)
     {
-        Gate::define('edit-job', function (User $user, Job $job) {
-            return $job->employer->user->is($user);
-        });
-
-        // Ensure the user is signed in
-        if (Auth::guest()) {
-            return redirect('/login');
-        }
-
+        // Use the 'edit-job' Gate defined in AppServiceProvider
+        // to ensure the user is authorised to edit the job
         Gate::authorize('edit-job', $job);
 
         return view('jobs.edit', ['job' => $job]);

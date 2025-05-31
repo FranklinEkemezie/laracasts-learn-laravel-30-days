@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class SessionController extends Controller
 {
@@ -15,6 +17,30 @@ class SessionController extends Controller
 
     public function store(Request $request)
     {
-        dump($request);
+        // Validate the form
+        $attrs = $request->validate([
+            'email'     => ['required'],
+            'password'  => ['required']
+        ]);
+
+        // Attempt to log the user in
+        if (! Auth::attempt($attrs)) {
+            throw ValidationException::withMessages([
+                'email' => 'Sorry, those credentials do not match'
+            ]);
+        }
+
+        // Regenerate the session token
+        $request->session()->regenerate();
+
+        // Redirect to dashboard/home page
+        return view('home');
+    }
+
+    public function destroy()
+    {
+        Auth::logout();
+
+        return redirect('/jobs');
     }
 }

@@ -58,7 +58,14 @@
                     </div>
                 @endguest
                 @auth
-                    <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <div class="absolute inset-y-0 right-0 gap-x-2 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                        <!-- Logout button -->
+                        <form method="post" action="/logout" class="mr-4">
+                            @csrf
+                            <x-form-button>Log Out</x-form-button>
+                        </form>
+
+                        <!-- Notification button -->
                         <button type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
                             <span class="absolute -inset-1.5"></span>
                             <span class="sr-only">View notifications</span>

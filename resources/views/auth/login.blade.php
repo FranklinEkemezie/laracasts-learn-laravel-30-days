@@ -11,21 +11,20 @@
 
                 <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
 
-
-                    {{--                    Email --}}
+                    {{-- Email field --}}
                     <x-form-field>
-                        <x-form-label for="first_name">Email</x-form-label>
+                        <x-form-label for="email">Email</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="email" id="email" required />
+                            <x-form-input name="email" id="email" :value="old('email')" required />
                         </div>
                         <x-form-error name="email" />
                     </x-form-field>
 
-                    {{--                    Password --}}
+                    {{-- Password field --}}
                     <x-form-field>
-                        <x-form-label for="first_name">Password</x-form-label>
+                        <x-form-label for="password">Password</x-form-label>
                         <div class="mt-2">
-                            <x-form-input name="password" id="password" required />
+                            <x-form-input name="password" id="password" type="password" required />
                         </div>
                         <x-form-error name="password" />
                     </x-form-field>
@@ -37,7 +36,7 @@
 
         <div class="mt-6 flex items-center justify-end gap-x-6">
             <a href="/" class="text-sm/6 font-semibold text-gray-900">Cancel</a>
-            <x-form-button type="submit">Save</x-form-button>
+            <x-form-button type="submit">Login</x-form-button>
         </div>
     </form>
 

@@ -53,6 +53,12 @@ class JobController extends Controller
         // to ensure the user is authorised to edit the job
         Gate::authorize('edit-job', $job);
 
+        // Using the 'can' and 'cannot' method to determine if
+        // the user is allowed to perform an action.
+        // Laravel provides the @can('gate-ability') and @cannot('gate-ability')
+        // directives that can be used in Blade component
+//        Auth::user()->can('edit-job', $job);
+
         return view('jobs.edit', ['job' => $job]);
     }
 

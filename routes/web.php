@@ -9,12 +9,16 @@ Route::view('/', 'home');
 Route::view('/about', 'about');
 Route::view('/contact', 'contact');
 
-Route::resource('jobs', JobController::class);
+// Jobs
+Route::resource('jobs', JobController::class)->only(['index', 'show']);
+Route::resource('jobs', JobController::class)->only(['create', 'store'])->middleware('auth');
+Route::resource('jobs', JobController::class)->only(['edit', 'update', 'destroy'])
+    ->middleware(['auth', 'can:edit-job,job']);
 
 // Auth
 Route::get('/register', [RegisteredUserController::class, 'create']);
 Route::post('/register', [RegisteredUserController::class, 'store']);
 
-Route::get('/login', [SessionController::class, 'create']);
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);
 Route::post('/logout', [SessionController::class, 'destroy']);

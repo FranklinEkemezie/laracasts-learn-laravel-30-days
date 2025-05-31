@@ -51,7 +51,7 @@ class JobController extends Controller
     {
         // Use the 'edit-job' Gate defined in AppServiceProvider
         // to ensure the user is authorised to edit the job
-        Gate::authorize('edit-job', $job);
+//        Gate::authorize('edit-job', $job);
 
         // Using the 'can' and 'cannot' method to determine if
         // the user is allowed to perform an action.

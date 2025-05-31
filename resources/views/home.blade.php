@@ -1,3 +1,7 @@
+@props([
+    'greeting'  => 'Yo',
+    'name'      => 'Ifeanyi'
+])
 <x-layout>
     <x-slot:heading>
         Home Page

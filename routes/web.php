@@ -4,14 +4,18 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\GuestMiddleware;
+use App\Jobs\TranslateJob;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
 
-    dispatch(function () {
-        logger('Hello from the queue');
-    })->delay(5);
+    // Dispatch the TranslateJob Job
+    // NB: Once the worker is running, the existing code is loaded into memory
+    // Always restart the worker after making changes in your codebase
+    TranslateJob::dispatch(Job::first());
+
+    return 'Done';
 });
 
 Route::get('/', function () {

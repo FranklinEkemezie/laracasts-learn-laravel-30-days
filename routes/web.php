@@ -7,6 +7,13 @@ use App\Http\Middleware\GuestMiddleware;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/test', function () {
+
+    dispatch(function () {
+        logger('Hello from the queue');
+    })->delay(5);
+});
+
 Route::get('/', function () {
     $user = auth()->user();
     $jobs = Job::with('employer')

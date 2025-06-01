@@ -7,16 +7,6 @@ use App\Http\Middleware\GuestMiddleware;
 use App\Models\Job;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/tests', function () {
-    $mail = new \App\Mail\JobPosted();
-
-    // Send mail
-    \Illuminate\Support\Facades\Mail::to('franklinpeter2024@gmail.com')->send($mail);
-
-    //
-   return $mail;
-});
-
 Route::get('/', function () {
     $user = auth()->user();
     $jobs = Job::with('employer')

@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Models\Job;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -34,7 +35,11 @@ class SessionController extends Controller
         $request->session()->regenerate();
 
         // Redirect to dashboard/home page
-        return view('home');
+        $jobs = Job::with('employer')
+            ->where('employer_id', $request->user()->employer->id)
+            ->latest()
+            ->paginate();
+        return view('home', ['jobs' => $jobs]);
     }
 
     public function destroy()

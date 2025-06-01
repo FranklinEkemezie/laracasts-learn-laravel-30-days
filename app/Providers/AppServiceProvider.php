@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Job;
 use App\Models\User;
+use App\Policies\JobPolicy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -32,8 +33,12 @@ class AppServiceProvider extends ServiceProvider
         // Configure Pagination
 //        Paginator::useBootstrapFive();
 
-        Gate::define('edit-job', function (User $user, Job $job) {
-            return $job->employer->user->is($user);
-        });
+        // Commenting out to show how to implement authorisation
+        // using Policy instead of gates
+//        Gate::define('edit-job', function (User $user, Job $job) {
+//            return $job->employer->user->is($user);
+//        });
+
+//        Gate::policy(Job::class, JobPolicy::class);
     }
 }

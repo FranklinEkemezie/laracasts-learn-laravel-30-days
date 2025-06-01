@@ -35,8 +35,6 @@ class JobController extends Controller
             'salary'    => ['required']
         ]);
 
-        // TODO: Validate request
-
         // Create job
         Job::create([
             'title'         => request('title'),
@@ -44,7 +42,7 @@ class JobController extends Controller
             'employer_id'   => 1
         ]);
 
-        return redirect('/jobs');
+        return redirect('/');
     }
 
     public function edit(Job $job)

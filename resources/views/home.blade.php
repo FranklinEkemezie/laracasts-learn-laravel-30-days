@@ -16,8 +16,8 @@
                     <strong>{{ $job['title'] }}</strong>: Pays {{ $job['salary'] }} per year.
                 </div>
                 <div class="text-sm text-end flex justify-between mt-4">
-                    <p>Created on <strong>{{ $job->created_at->toDateTimeString() }}</strong></p>
-                    <p>Updated on <strong>{{ $job->updated_at->toDateTimeString() }}</strong></p>
+                    <p>Created on <strong class="text-brand">{{ $job->created_at->toDateTimeString() }}</strong></p>
+                    <p>Updated on <strong class="text-brand">{{ $job->updated_at->toDateTimeString() }}</strong></p>
                 </div>
             </a>
         @endforeach

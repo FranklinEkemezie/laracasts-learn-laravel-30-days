@@ -34,12 +34,7 @@ class SessionController extends Controller
         // Regenerate the session token
         $request->session()->regenerate();
 
-        // Redirect to dashboard/home page
-        $jobs = Job::with('employer')
-            ->where('employer_id', $request->user()->employer->id)
-            ->latest()
-            ->paginate();
-        return view('home', ['jobs' => $jobs]);
+        return redirect('/');
     }
 
     public function destroy()
